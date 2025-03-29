@@ -10,6 +10,24 @@ This repo is organized for a two-person team working in parallel:
 - **Person 1: Game Developer** - Focuses on Unity development and game mechanics
 - **Person 2: Blockchain Specialist** - Handles all on-chain integrations
 
+## Integration Approaches
+
+We offer two distinct approaches to blockchain integration:
+
+### 1. Traditional SDK Integration
+Uses established blockchain SDKs like Web3.unity or ThirdWeb to connect your game to multiple blockchains.
+- More stable, production-ready
+- Works offline
+- Lower operational costs
+- See [TASKS_BLOCKCHAIN_SPECIALIST.md](TASKS_BLOCKCHAIN_SPECIALIST.md) for implementation
+
+### 2. Novel MCP-Driven Integration ✨
+Uses Claude MCP to handle blockchain operations directly at runtime.
+- Highly flexible and adaptive
+- Reduced blockchain knowledge required
+- Natural language interface for blockchain operations
+- See [MCP_BLOCKCHAIN_INTEGRATION.md](MCP_BLOCKCHAIN_INTEGRATION.md) for implementation
+
 ## Individual Task Lists
 
 Each team member has their own dedicated task list with specific responsibilities:
@@ -21,6 +39,7 @@ Each team member has their own dedicated task list with specific responsibilitie
 
 - 📋 [TASKS_GAME_DEVELOPER.md](TASKS_GAME_DEVELOPER.md) - Detailed tasks for the Unity developer
 - 📋 [TASKS_BLOCKCHAIN_SPECIALIST.md](TASKS_BLOCKCHAIN_SPECIALIST.md) - Detailed tasks for the blockchain developer
+- 🚀 [MCP_BLOCKCHAIN_INTEGRATION.md](MCP_BLOCKCHAIN_INTEGRATION.md) - Guide for AI-driven blockchain integration
 - 💻 [CODE_TEMPLATES/game_developer.cs](CODE_TEMPLATES/game_developer.cs) - Starter code for Unity developer
 - 💻 [CODE_TEMPLATES/blockchain_specialist.cs](CODE_TEMPLATES/blockchain_specialist.cs) - Starter code for blockchain integration
 - 📄 [CODE_TEMPLATES/GameAsset.sol](CODE_TEMPLATES/GameAsset.sol) - Smart contract template for game assets
@@ -35,12 +54,20 @@ Each team member has their own dedicated task list with specific responsibilitie
 - Basic UI assets (from Asset Store)
 
 ### For Blockchain Specialist
+Choose one approach:
+
+#### SDK Approach:
 - One of these SDKs:
   - Web3.unity by ChainSafe
   - ThirdWeb Unity SDK 
   - Moralis Unity SDK
 - Smart contract development tools (Remix, Hardhat, etc.)
 - Test accounts on multiple chains
+
+#### MCP-Driven Approach:
+- Unity MCP (for Claude integration)
+- Bankless Onchain MCP (for blockchain data access)
+- Well-structured prompt templates
 
 ## Immediate Action Steps
 
