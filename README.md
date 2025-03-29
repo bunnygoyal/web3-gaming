@@ -1,8 +1,21 @@
 # Web3 Gaming Implementation Guide
 
-## The No-Nonsense Approach to Blockchain Game Development
+## Fast-Track Blockchain Integration: 2-3 Days to Launch
 
 Everyone's overthinking blockchain integration. They're writing thousand-page whitepapers while the real players are shipping products. You don't need to become a blockchain expert. You need to execute.
+
+## Team Structure
+
+This repo is organized for a two-person team working in parallel:
+- **Person 1: Game Developer** - Focuses on Unity development and game mechanics
+- **Person 2: Blockchain Specialist** - Handles all on-chain integrations
+
+For detailed day-by-day tasks for each team member, see [TEAM_TASKS.md](TEAM_TASKS.md).
+
+## Key Files in This Repository
+- [TEAM_TASKS.md](TEAM_TASKS.md) - Parallel implementation plan for 2-3 day completion
+- [IMPLEMENTATION.md](IMPLEMENTATION.md) - Technical details and code examples
+- [QUICKSTART.md](QUICKSTART.md) - Checklist of tasks with estimated completion times
 
 ## Immediate Action Steps
 
@@ -30,69 +43,52 @@ uv pip install -e .
    - Click "Auto Configure"
    - In Claude: Navigate to Settings > Developer > Unity MCP
 
-## Implementation Priorities
+## Technical Implementation Highlights
 
-### 1. Wallet Connection (Day 1-2)
-Start with this - implement a basic wallet connection using the Connect Wallet prefab from your chosen SDK. This is your foundation.
-
+### For Game Developer
 ```csharp
-// Basic wallet connection example
-using Thirdweb;
+// Simple example for displaying an NFT in your game
+using UnityEngine;
+using UnityEngine.UI;
+using System.Threading.Tasks;
 
-public class WalletManager : MonoBehaviour
+public class NFTDisplay : MonoBehaviour
 {
-    private ThirdwebSDK sdk;
+    public RawImage imageComponent;
+    public Text nameText;
+    public Text descriptionText;
     
-    async void Start()
+    public async Task DisplayNFT(string tokenURI)
     {
-        sdk = new ThirdwebSDK("polygon");
-        await sdk.wallet.Connect();
+        // Parse JSON metadata from tokenURI
+        // Load texture from image URL
+        // Apply to UI components
     }
 }
 ```
 
-### 2. Chain Selection (Day 3-4)
-Add a simple UI for players to select different blockchains:
-
+### For Blockchain Specialist
 ```csharp
-// Chain switching functionality
-public class BlockchainManager : MonoBehaviour
-{
-    private ThirdwebSDK sdk;
-    
-    public async void SwitchToPolygon()
-    {
-        sdk = new ThirdwebSDK("polygon");
-        await InitializeContracts();
-    }
-    
-    public async void SwitchToAvalanche()
-    {
-        sdk = new ThirdwebSDK("avalanche");
-        await InitializeContracts();
-    }
-    
-    private async Task InitializeContracts()
-    {
-        // Initialize your game contracts
-    }
-}
-```
+// Basic wallet connection
+using UnityEngine;
+using System.Threading.Tasks;
+using Web3Unity.Scripts.Library.Ethers.Providers;
 
-### 3. Smart Contract Deployment (Day 5-7)
-Deploy basic asset contracts to test networks:
-
-```csharp
-// Interacting with deployed contracts
-public async Task MintGameAsset()
+public class WalletConnector : MonoBehaviour
 {
-    var contract = sdk.GetContract("YOUR_CONTRACT_ADDRESS");
-    await contract.ERC721.Mint(new NFTMetadata
+    public async Task<bool> ConnectWallet()
     {
-        name = "Game Asset",
-        description = "In-game item",
-        image = "https://example.com/asset.png"
-    });
+        var response = await Web3Wallet.Connect();
+        
+        if (response != null)
+        {
+            Debug.Log("Connected wallet address: " + response.address);
+            PlayerPrefs.SetString("WalletAddress", response.address);
+            return true;
+        }
+        
+        return false;
+    }
 }
 ```
 
