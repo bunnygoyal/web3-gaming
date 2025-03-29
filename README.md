@@ -10,87 +10,62 @@ This repo is organized for a two-person team working in parallel:
 - **Person 1: Game Developer** - Focuses on Unity development and game mechanics
 - **Person 2: Blockchain Specialist** - Handles all on-chain integrations
 
-For detailed day-by-day tasks for each team member, see [TEAM_TASKS.md](TEAM_TASKS.md).
+## Individual Task Lists
+
+Each team member has their own dedicated task list with specific responsibilities:
+
+- [Game Developer Tasks](TASKS_GAME_DEVELOPER.md) - UI development, asset visualization, game mechanics
+- [Blockchain Specialist Tasks](TASKS_BLOCKCHAIN_SPECIALIST.md) - Wallet connection, blockchain integration, smart contracts
 
 ## Key Files in This Repository
-- [TEAM_TASKS.md](TEAM_TASKS.md) - Parallel implementation plan for 2-3 day completion
-- [IMPLEMENTATION.md](IMPLEMENTATION.md) - Technical details and code examples
-- [QUICKSTART.md](QUICKSTART.md) - Checklist of tasks with estimated completion times
+
+- 📋 [TASKS_GAME_DEVELOPER.md](TASKS_GAME_DEVELOPER.md) - Detailed tasks for the Unity developer
+- 📋 [TASKS_BLOCKCHAIN_SPECIALIST.md](TASKS_BLOCKCHAIN_SPECIALIST.md) - Detailed tasks for the blockchain developer
+- 💻 [CODE_TEMPLATES/game_developer.cs](CODE_TEMPLATES/game_developer.cs) - Starter code for Unity developer
+- 💻 [CODE_TEMPLATES/blockchain_specialist.cs](CODE_TEMPLATES/blockchain_specialist.cs) - Starter code for blockchain integration
+- 📄 [CODE_TEMPLATES/GameAsset.sol](CODE_TEMPLATES/GameAsset.sol) - Smart contract template for game assets
+- 📊 [IMPLEMENTATION.md](IMPLEMENTATION.md) - Technical overview and architecture
+- ✅ [QUICKSTART.md](QUICKSTART.md) - Checklist of tasks with estimated completion times
+
+## Tools You'll Need
+
+### For Game Developer
+- Unity 2020.3 LTS or newer (URP compatible)
+- Unity MCP for AI assistance
+- Basic UI assets (from Asset Store)
+
+### For Blockchain Specialist
+- One of these SDKs:
+  - Web3.unity by ChainSafe
+  - ThirdWeb Unity SDK 
+  - Moralis Unity SDK
+- Smart contract development tools (Remix, Hardhat, etc.)
+- Test accounts on multiple chains
 
 ## Immediate Action Steps
 
-1. Set up these three tools. No debating, no researching alternatives - these work:
-   - Unity MCP - So Claude can write code for you
-   - Web3.unity SDK from ChainSafe - For the blockchain connectivity
-   - UV package manager - Essential for the installation process
+1. **Setup Unity MCP** - For AI-assisted development with Claude:
+   ```bash
+   git clone https://github.com/justinpbarnett/unity-mcp.git
+   
+   # Install UV package manager (Windows)
+   powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+   # OR for Mac
+   # brew install uv
+   
+   # Install dependencies
+   uv pip install -e .
+   ```
 
-2. Run these exact commands:
-```bash
-# Clone the Unity MCP repository
-git clone https://github.com/justinpbarnett/unity-mcp.git
+2. **Unity Setup** - Verify the MCP setup:
+   - In Unity: Window > Unity MCP > Configurator > Auto Configure
+   - In Claude: Settings > Developer > Unity MCP
 
-# Install UV package manager (Windows)
-powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
-# OR for Mac
-# brew install uv
-
-# Install dependencies
-uv pip install -e .
-```
-
-3. Verify the setup through Unity's Window menu:
-   - Select "Unity MCP > Configurator"
-   - Click "Auto Configure"
-   - In Claude: Navigate to Settings > Developer > Unity MCP
-
-## Technical Implementation Highlights
-
-### For Game Developer
-```csharp
-// Simple example for displaying an NFT in your game
-using UnityEngine;
-using UnityEngine.UI;
-using System.Threading.Tasks;
-
-public class NFTDisplay : MonoBehaviour
-{
-    public RawImage imageComponent;
-    public Text nameText;
-    public Text descriptionText;
-    
-    public async Task DisplayNFT(string tokenURI)
-    {
-        // Parse JSON metadata from tokenURI
-        // Load texture from image URL
-        // Apply to UI components
-    }
-}
-```
-
-### For Blockchain Specialist
-```csharp
-// Basic wallet connection
-using UnityEngine;
-using System.Threading.Tasks;
-using Web3Unity.Scripts.Library.Ethers.Providers;
-
-public class WalletConnector : MonoBehaviour
-{
-    public async Task<bool> ConnectWallet()
-    {
-        var response = await Web3Wallet.Connect();
-        
-        if (response != null)
-        {
-            Debug.Log("Connected wallet address: " + response.address);
-            PlayerPrefs.SetString("WalletAddress", response.address);
-            return true;
-        }
-        
-        return false;
-    }
-}
-```
+3. **Optional: Setup Bankless Onchain MCP** - For blockchain data access:
+   ```bash
+   npm install -g @bankless/onchain-mcp
+   npx @bankless/onchain-mcp
+   ```
 
 ## Development Philosophy
 
@@ -103,10 +78,6 @@ Most developers waste weeks learning blockchain theory. Winners execute the setu
 - [Unity MCP GitHub Repository](https://github.com/justinpbarnett/unity-mcp)
 - [ChainSafe Web3.unity Documentation](https://docs.gaming.chainsafe.io/)
 - [ThirdWeb Unity SDK Portal](https://portal.thirdweb.com/unity)
-
-## Technical Requirements
-
-- Unity 2020.3 LTS or newer (works with URP projects)
-- Python 3.7 or newer
-- Git
-- Claude Desktop App (for AI assistance)
+- [Moralis Unity SDK](https://moralis.io/unity/)
+- [Bankless Onchain MCP](https://github.com/Bankless/onchain-mcp)
+- [OpenZeppelin Contracts](https://github.com/OpenZeppelin/openzeppelin-contracts)
